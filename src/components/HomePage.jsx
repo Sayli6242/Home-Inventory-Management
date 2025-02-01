@@ -1,129 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { PlusCircle, Search, LayoutGrid, Settings } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
+import React from 'react';
+import { FolderPlus, Dumbbell, Target, Trophy, Flame } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
     const navigate = useNavigate();
 
-
     return (
-        <div className="container mx-auto px-4 py-8 max-w-6xl">
-            {/* Hero Section */}
-            <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold mb-4">Home Inventory Management</h1>
-                <p className="text-lg text-gray-600 mb-8">
-                    Keep track of your belongings with ease and organization
-                </p>
+        <div className="min-h-screen bg-[#FDF5F3]">
+            {/* Decorative background elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute -left-4 top-1/4 w-72 h-72 bg-fuchsia-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
+                <div className="absolute -right-4 top-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
+                <div className="absolute left-1/4 bottom-1/4 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
             </div>
 
-            {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-                <Link to="/add">
-                    <Card className="hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6 flex flex-col items-center text-center">
-                            <PlusCircle className="h-12 w-12 mb-4 text-blue-500" />
-                            <h3 className="font-semibold mb-2">Add Item</h3>
-                            <p className="text-sm text-gray-600">Add new items to your inventory</p>
-                        </CardContent>
-                    </Card>
-                </Link>
-
-                <Link to="/search">
-                    <Card className="hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6 flex flex-col items-center text-center">
-                            <Search className="h-12 w-12 mb-4 text-green-500" />
-                            <h3 className="font-semibold mb-2">Search Items</h3>
-                            <p className="text-sm text-gray-600">Find items in your inventory</p>
-                        </CardContent>
-                    </Card>
-                </Link>
-
-                <Link to="/categories">
-                    <Card className="hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6 flex flex-col items-center text-center">
-                            <LayoutGrid className="h-12 w-12 mb-4 text-purple-500" />
-                            <h3 className="font-semibold mb-2">Categories</h3>
-                            <p className="text-sm text-gray-600">Browse by category</p>
-                        </CardContent>
-                    </Card>
-                </Link>
-
-                <Link to="/settings">
-                    <Card className="hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6 flex flex-col items-center text-center">
-                            <Settings className="h-12 w-12 mb-4 text-orange-500" />
-                            <h3 className="font-semibold mb-2">Settings</h3>
-                            <p className="text-sm text-gray-600">Manage your preferences</p>
-                        </CardContent>
-                    </Card>
-                </Link>
-            </div>
-
-            {/* Stats Section */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Total Items</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-3xl font-bold">{stats.totalItems}</p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Categories</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-3xl font-bold">{stats.categories}</p>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Recently Added</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="space-y-2">
-                            {stats.recentlyAdded.map(item => (
-                                <div key={item.id} className="flex items-center justify-between">
-                                    <span className="text-sm">{item.name}</span>
-                                    <span className="text-xs text-gray-500">{item.date}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
-
-            {/* Getting Started */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Getting Started</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="space-y-4">
-                        <p className="text-gray-600">
-                            Welcome to your home inventory management system. Here's how to get started:
-                        </p>
-                        <ol className="list-decimal ml-6 space-y-2">
-                            <li>Click "Add Item" to start building your inventory</li>
-                            <li>Use categories to organize your items</li>
-                            <li>Search for items when you need to find something</li>
-                            <li>Track quantities and locations of your belongings</li>
-                        </ol>
-                        <div className="mt-6">
-                            <Button asChild>
-                                <Link to="/add">Start Adding Items</Link>
-                            </Button>
+            <div className="relative min-h-screen flex flex-col items-center justify-center p-4">
+                {/* Hero Section */}
+                <div className="w-full max-w-4xl mx-auto text-center space-y-8">
+                    {/* Logo */}
+                    <div className="flex justify-center mb-8">
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-600 to-pink-400 rounded-full blur-lg opacity-75" />
+                            <div className="relative bg-white p-4 rounded-full">
+                                <Dumbbell className="w-16 h-16 text-fuchsia-600" />
+                            </div>
                         </div>
                     </div>
-                </CardContent>
-            </Card>
+
+                    {/* Main Content */}
+                    <div className="space-y-6">
+                        <h1 className="text-6xl font-extrabold text-gray-800">
+                            Workout
+                            <span className="bg-gradient-to-r from-fuchsia-600 to-pink-500 text-transparent bg-clip-text"> Planner</span>
+                        </h1>
+
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                            Elevate your fitness journey with a personalized workout plan
+                        </p>
+
+                        {/* Feature Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                            <div className="bg-white p-6 rounded-xl border border-pink-100 hover:border-fuchsia-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                                <Target className="w-8 h-8 text-fuchsia-500 mb-4" />
+                                <h3 className="text-lg font-semibold text-gray-800 mb-2">Set Goals</h3>
+                                <p className="text-gray-600">Define your fitness objectives and track your progress by yourself</p>
+                            </div>
+                            <div className="bg-white p-6 rounded-xl border border-pink-100 hover:border-fuchsia-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                                <Flame className="w-8 h-8 text-pink-500 mb-4" />
+                                <h3 className="text-lg font-semibold text-gray-800 mb-2">Stay Motivated</h3>
+                                <p className="text-gray-600">Modify your folders to keep your workout routine fresh and engaging</p>
+                            </div>
+                            <div className="bg-white p-6 rounded-xl border border-pink-100 hover:border-fuchsia-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                                <Trophy className="w-8 h-8 text-orange-400 mb-4" />
+                                <h3 className="text-lg font-semibold text-gray-800 mb-2">Make Progress</h3>
+                                <p className="text-gray-600">Create personalized exercises to achive your fitness goals</p>
+                            </div>
+                        </div>
+
+                        {/* CTA Button */}
+                        <div className="mt-12">
+                            <button
+                                onClick={() => navigate('/folders')}
+                                className="group relative inline-flex items-center px-8 py-4 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-full overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
+                            >
+                                <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-pink-500 top-1/2 group-hover:h-64 -translate-y-32 ease" />
+                                <span className="relative flex items-center space-x-2">
+                                    <FolderPlus className="w-6 h-6" />
+                                    <span className="font-semibold text-lg">Get Started Now</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
 
-
-export default HomePage
+export default HomePage;
