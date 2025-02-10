@@ -1,48 +1,18 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-import { AuthProvider } from '../src/components/auth/AuthContext';
-import { Login } from '../src/components/auth/SignIn';
-import { Register } from '../src/components/auth/SignUp';
-import { ResetPassword } from '../src/components/auth/ResetPassword';
-import { ForgotPassword } from '../src/components/auth/ForgetPassword';
-import { PublicRoute } from '../src/components/auth/PublicRoute';
-import { ProtectedRoute } from '../src/components/auth/ProtectedRoute';
-import { Home } from '../src/components/HomePage';
-
+import { AuthProvider } from './AuthContext';
+import Login from './SignIn';
+import Register from './SignUp';
+import HomePage from './HomePage';
+import { PublicRoute } from './PublicRoute';
+import { ProtectedRoute } from './ProtectedRoute';
 
 const router = createBrowserRouter([
-    {
-        path: '/login',
-        element: <PublicRoute><Login /></PublicRoute>
-    },
-    {
-        path: '/signup',
-        element: <PublicRoute><Register /></PublicRoute>
-    },
-    {
-        path: '/reset-password',
-        element: <PublicRoute><ResetPassword /></PublicRoute>
-    },
-    {
-        path: '/forget-password',
-        element: <PublicRoute><ForgotPassword /></PublicRoute>
-    },
-    {
-        path: '/Home',
-        element: <PublicRoute><HomePage /></PublicRoute>
-    },
-    {
-        path: '/Dashboard',
-        element: <ProtectedRoute><Home /></ProtectedRoute>
-    },
-    {
-        path: '/',
-        element: <Navigate to="/Home" replace />
-    },
-    {
-        path: '*',
-        element: <Navigate to="/Home" replace />
-    }
+    { path: '/login', element: <PublicRoute><Login /></PublicRoute> },
+    { path: '/signup', element: <PublicRoute><Register /></PublicRoute> },
+    { path: '/home', element: <ProtectedRoute><HomePage /></ProtectedRoute> },
+    { path: '/', element: <Navigate to="/login" replace /> },
+    { path: '*', element: <Navigate to="/home" replace /> }
 ]);
 
 const App = () => {
