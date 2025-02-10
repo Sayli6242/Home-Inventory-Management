@@ -4,6 +4,7 @@ import { supabase } from './supabase';
 // Create axios instance
 const axiosInstance = axios.create({
     // baseURL: 'https://fastapibackend-0kb9.onrender.com/api'  // Add this line
+    baseURL: "http://localhost:8000/api"
 });
 
 // Add a request interceptor

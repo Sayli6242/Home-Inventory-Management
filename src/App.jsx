@@ -1,25 +1,23 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-import { AuthProvider } from './AuthContext';
-import Login from './SignIn';
-import Register from './SignUp';
-import HomePage from './HomePage';
-import { PublicRoute } from './PublicRoute';
-import { ProtectedRoute } from './ProtectedRoute';
-
-const router = createBrowserRouter([
-    { path: '/login', element: <PublicRoute><Login /></PublicRoute> },
-    { path: '/signup', element: <PublicRoute><Register /></PublicRoute> },
-    { path: '/home', element: <ProtectedRoute><HomePage /></ProtectedRoute> },
-    { path: '/', element: <Navigate to="/login" replace /> },
-    { path: '*', element: <Navigate to="/home" replace /> }
-]);
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './components/auth/AuthContext';
+import Login from '../src/components/auth/SignIn';
+import Register from '../src/components/auth/SignUp';
+import HomePage from '../src/pages/HomePage';
+import PublicRoute from './components/auth/PublicRoute';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 const App = () => {
     return (
         <AuthProvider>
             <div className="min-h-screen bg-gray-50">
-                <RouterProvider router={router} />
+                <Routes>
+                    <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+                    <Route path="/signup" element={<PublicRoute><Register /></PublicRoute>} />
+                    <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+                    <Route path="/" element={<Navigate to="/login" replace />} />
+                    <Route path="*" element={<Navigate to="/home" replace />} />
+                </Routes>
             </div>
         </AuthProvider>
     );
