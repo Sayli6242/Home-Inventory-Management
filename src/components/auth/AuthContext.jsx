@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import auth from '../../lib/auth';
+import { supabase } from '../../lib/Supabase';
 
 const AuthContext = createContext({});
 
@@ -10,10 +10,17 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const currentUser = await auth.getUser();
-                setUser(currentUser);
+                const { data, error } = await supabase.auth.getSession();
+                if (error) throw error;
+
+                if (data?.session) {
+                    setUser(data.session.user);
+                } else {
+                    console.warn('No active session found. User might need to log in.');
+                    setUser(null);
+                }
             } catch (error) {
-                console.error('Error fetching user:', error.message);
+                console.error('Authentication error:', error.message);
                 setUser(null);
             } finally {
                 setLoading(false);
@@ -21,10 +28,16 @@ export const AuthProvider = ({ children }) => {
         };
 
         fetchUser();
+
+        const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => listener.subscription.unsubscribe();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated: !!user, signOut: auth.signOut }}>
+        <AuthContext.Provider value={{ user, isAuthenticated: !!user, signOut: supabase.auth.signOut }}>
             {!loading && children}
         </AuthContext.Provider>
     );

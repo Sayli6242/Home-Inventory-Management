@@ -6,6 +6,8 @@ import Register from '../src/components/auth/SignUp';
 import HomePage from '../src/pages/HomePage';
 import PublicRoute from './components/auth/PublicRoute';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import ForgotPassword from './components/auth/ForgetPassword';
+import ResetPassword from './components/auth/ResetPassword';
 
 const App = () => {
     return (
@@ -15,6 +17,8 @@ const App = () => {
                     <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
                     <Route path="/signup" element={<PublicRoute><Register /></PublicRoute>} />
                     <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+                    <Route path="/reset-password" element={<ProtectedRoute><ResetPassword /></ProtectedRoute>} />
+                    <Route path="/forget-password" element={<ProtectedRoute><ForgotPassword /></ProtectedRoute>} />
                     <Route path="/" element={<Navigate to="/login" replace />} />
                     <Route path="*" element={<Navigate to="/home" replace />} />
                 </Routes>
