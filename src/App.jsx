@@ -8,7 +8,7 @@ import PublicRoute from './components/auth/PublicRoute';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import ForgotPassword from './components/auth/ForgetPassword';
 import ResetPassword from './components/auth/ResetPassword';
-
+import Dashboard from '../src/pages/DashboardPage';
 const App = () => {
     return (
         <AuthProvider>
@@ -19,6 +19,7 @@ const App = () => {
                     <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
                     <Route path="/reset-password" element={<ProtectedRoute><ResetPassword /></ProtectedRoute>} />
                     <Route path="/forget-password" element={<ProtectedRoute><ForgotPassword /></ProtectedRoute>} />
+                    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                     <Route path="/" element={<Navigate to="/login" replace />} />
                     <Route path="*" element={<Navigate to="/home" replace />} />
                 </Routes>
